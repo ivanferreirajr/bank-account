@@ -2,14 +2,13 @@ import { BankAccount } from './bank-account';
 import { AccountType } from './interfaces/account-type';
 
 function accountSutFactory(): BankAccount {
-  const bankAccount = new BankAccount(
-    '5050',
-    '12345',
-    AccountType.CORRENTE,
-    50,
-    '123',
-  );
-
+  const bankAccount = new BankAccount({
+    id: '123',
+    agency: '5050',
+    account_number: '12345',
+    account_type: AccountType.CORRENTE,
+    balance: 50,
+  });
   return bankAccount;
 }
 

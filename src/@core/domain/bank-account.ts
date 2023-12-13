@@ -1,6 +1,14 @@
 import { v4 as uuid } from 'uuid';
 import { AccountType } from './interfaces/account-type';
 
+export type BankAccountProps = {
+  id?: string;
+  agency: string;
+  account_number: string;
+  account_type: AccountType;
+  balance: number;
+};
+
 export class BankAccount {
   id: string;
   agency: string;
@@ -8,18 +16,12 @@ export class BankAccount {
   account_type: AccountType;
   balance: number;
 
-  constructor(
-    agency: string,
-    account_number: string,
-    account_type: AccountType,
-    balance: number,
-    id?: string,
-  ) {
-    this.id = id ?? uuid();
-    this.agency = agency;
-    this.account_number = account_number;
-    this.account_type = account_type;
-    this.balance = balance;
+  constructor(bankAccountProps: BankAccountProps) {
+    this.id = bankAccountProps.id ?? uuid();
+    this.agency = bankAccountProps.agency;
+    this.account_number = bankAccountProps.account_number;
+    this.account_type = bankAccountProps.account_type;
+    this.balance = bankAccountProps.balance;
   }
 
   debit(amount: number): void {

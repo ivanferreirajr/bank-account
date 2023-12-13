@@ -22,12 +22,13 @@ export class BankAccountTypeOrmRepository implements BankAccountRepository {
     const model = await this.ormRepo.findOneBy({
       account_number: account_number,
     });
-    return new BankAccount(
-      model.agency,
-      model.account_number,
-      AccountType[model.account_type],
-      model.balance,
-      model.id,
-    );
+
+    return new BankAccount({
+      id: model.id,
+      agency: model.agency,
+      account_number: model.account_number,
+      account_type: AccountType[model.account_type],
+      balance: model.balance,
+    });
   }
 }

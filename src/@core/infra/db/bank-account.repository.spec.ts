@@ -33,13 +33,15 @@ async function sutFactory(): Promise<sutFactoryReturn> {
 
 describe('BankAccount Repository', () => {
   it('should insert a new account', async () => {
-    const bankAccount = new BankAccount(
-      '5050',
-      '12345',
-      AccountType.POUPANCA,
-      50,
-    );
     const { repository, ormRepo } = await sutFactory();
+    const bankAccount = new BankAccount({
+      id: '123',
+      agency: '5050',
+      account_number: '12345',
+      account_type: AccountType.CORRENTE,
+      balance: 50,
+    });
+
     await repository.insert(bankAccount);
     const model = await ormRepo.findOneBy({ account_number: '1111-11' });
 

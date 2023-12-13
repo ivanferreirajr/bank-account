@@ -11,12 +11,12 @@ export class BankAccountService {
     account_type: AccountType,
     balance: number,
   ) {
-    const bankAccount = new BankAccount(
+    const bankAccount = new BankAccount({
       agency,
       account_number,
       account_type,
       balance,
-    );
+    });
     await this.bankAccountRepo.insert(bankAccount);
     return bankAccount;
   }
