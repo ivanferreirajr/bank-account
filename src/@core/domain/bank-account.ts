@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import { AccountType } from './interfaces/account-type';
 
 export class BankAccount {
@@ -8,13 +9,13 @@ export class BankAccount {
   balance: number;
 
   constructor(
-    id: string,
     agency: string,
     account_number: string,
     account_type: AccountType,
     balance: number,
+    id?: string,
   ) {
-    this.id = id;
+    this.id = id ?? uuid();
     this.agency = agency;
     this.account_number = account_number;
     this.account_type = account_type;

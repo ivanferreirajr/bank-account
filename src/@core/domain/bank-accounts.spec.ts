@@ -3,11 +3,11 @@ import { AccountType } from './interfaces/account-type';
 
 function accountSutFactory(): BankAccount {
   const bankAccount = new BankAccount(
-    '123',
     '5050',
     '12345',
     AccountType.CORRENTE,
     50,
+    '123',
   );
 
   return bankAccount;
