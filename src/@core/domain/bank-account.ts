@@ -21,11 +21,11 @@ export class BankAccount {
     this.agency = bankAccountProps.agency;
     this.account_number = bankAccountProps.account_number;
     this.account_type = bankAccountProps.account_type;
-    this.balance = 0;
+    this.balance = bankAccountProps.balance ?? 0;
   }
 
   debit(amount: number): void {
-    if (this.balance <= amount) {
+    if (this.balance < amount) {
       throw new Error('Insufficient funds');
     }
     this.balance -= amount;

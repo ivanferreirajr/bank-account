@@ -4,6 +4,7 @@ import { Repository, DataSource } from 'typeorm';
 import { BankAccountSchema } from '../@core/infra/db/bank-account.schema';
 import { InjectRepository, getDataSourceToken } from '@nestjs/typeorm';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
+import { TransactionBankAccountDto } from './dto/transaction-bank-account.dto';
 
 @Injectable({})
 export class BankAccountRestService {
@@ -45,5 +46,47 @@ export class BankAccountRestService {
     const account = await this.repo.findOneBy({ id });
     await this.repo.delete(id);
     return account;
+  }
+
+  async credit(transactionBankAccountDto: TransactionBankAccountDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    try {
+      await queryRunner.startTransaction();
+      const account = await this.repo.findOneBy({
+        account_number: transactionBankAccountDto.account_number,
+        agency: transactionBankAccountDto.agency,
+      });
+      account.balance += transactionBankAccountDto.amount;
+
+      this.repo.save(account);
+      await queryRunner.commitTransaction();
+    } catch (e) {
+      await queryRunner.rollbackTransaction();
+      console.error(e);
+      throw e;
+    }
+  }
+
+  async debit(transactionBankAccountDto: TransactionBankAccountDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    try {
+      await queryRunner.startTransaction();
+      const account = await this.repo.findOneBy({
+        account_number: transactionBankAccountDto.account_number,
+        agency: transactionBankAccountDto.agency,
+      });
+
+      if (account.balance < transactionBankAccountDto.amount) {
+        throw new Error('Insufficient Funds');
+      }
+      account.balance -= transactionBankAccountDto.amount;
+
+      this.repo.save(account);
+      await queryRunner.commitTransaction();
+    } catch (e) {
+      await queryRunner.rollbackTransaction();
+      console.error(e);
+      throw e;
+    }
   }
 }

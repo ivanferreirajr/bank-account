@@ -14,4 +14,22 @@ export class BankAccountService {
     await this.bankAccountRepo.insert(bankAccount);
     return bankAccount;
   }
+
+  async credit(account_number: string, agency: string, amount: number) {
+    const bankAccount =
+      await this.bankAccountRepo.findByAccountNumber(account_number);
+
+    bankAccount.credit(amount);
+
+    await this.bankAccountRepo.update(bankAccount);
+  }
+
+  async debit(account_number: string, agency: string, amount: number) {
+    const bankAccount =
+      await this.bankAccountRepo.findByAccountNumber(account_number);
+
+    bankAccount.debit(amount);
+
+    await this.bankAccountRepo.update(bankAccount);
+  }
 }
