@@ -1,6 +1,16 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNumber, IsString } from 'class-validator';
+
 export class CreateBankAccountDto {
-  account_number: string;
+  @IsNumber()
+  @ApiProperty()
+  account_number: number;
+
+  @IsString()
+  @ApiProperty()
   account_type: string;
-  agency: string;
-  balance: number;
+
+  @IsNumber()
+  @ApiProperty()
+  agency: number;
 }
