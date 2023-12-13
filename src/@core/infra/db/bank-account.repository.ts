@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { BankAccountSchema } from './bank-account.schema';
 import { BankAccount } from '../../domain/bank-account';
 import { BankAccountRepository } from '../../domain/interfaces/bank-account.repository';
-import { AccountType } from 'src/@core/domain/interfaces/account-type';
+import { AccountType } from '../../domain/interfaces/account-type';
 
 export class BankAccountTypeOrmRepository implements BankAccountRepository {
   constructor(private ormRepo: Repository<BankAccountSchema>) {}

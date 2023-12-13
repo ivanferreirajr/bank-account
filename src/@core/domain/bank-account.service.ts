@@ -10,7 +10,6 @@ export class BankAccountService {
       agency: String(agency),
       account_number: String(account_number),
       account_type: AccountType[account_type],
-      balance: 0,
     });
     await this.bankAccountRepo.insert(bankAccount);
     return bankAccount;

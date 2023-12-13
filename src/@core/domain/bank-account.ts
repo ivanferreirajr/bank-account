@@ -6,7 +6,7 @@ export type BankAccountProps = {
   agency: string;
   account_number: string;
   account_type: AccountType;
-  balance: number;
+  balance?: number;
 };
 
 export class BankAccount {
@@ -21,7 +21,7 @@ export class BankAccount {
     this.agency = bankAccountProps.agency;
     this.account_number = bankAccountProps.account_number;
     this.account_type = bankAccountProps.account_type;
-    this.balance = bankAccountProps.balance;
+    this.balance = 0;
   }
 
   debit(amount: number): void {

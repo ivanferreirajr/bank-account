@@ -2,7 +2,6 @@ import { DataSource, Repository } from 'typeorm';
 import { BankAccountTypeOrmRepository } from '../infra/db/bank-account.repository';
 import { BankAccountSchema } from '../infra/db/bank-account.schema';
 import { BankAccountService } from './bank-account.service';
-import { AccountType } from './interfaces/account-type';
 
 type sutFactoryReturn = {
   dataSource: DataSource;
@@ -39,15 +38,12 @@ async function sutFactory(): Promise<sutFactoryReturn> {
 describe('BankAccountService', () => {
   it('should create a new bank account', async () => {
     const { ormRepo, bankAccountService } = await sutFactory();
-    await bankAccountService.create(
-      '3030',
-      '1111-11',
-      AccountType['CORRENTE'],
-      50,
-    );
-    const model = await ormRepo.findOneBy({ account_number: '1111-11' });
+
+    await bankAccountService.create(3030, 111111, 'CORRENTE');
+    const model = await ormRepo.findOneBy({ account_number: '111111' });
+
     expect(model.agency).toBe('3030');
-    expect(model.balance).toBe(50);
-    expect(model.account_number).toBe('1111-11');
+    expect(model.balance).toBe(0);
+    expect(model.account_number).toBe('111111');
   });
 });
