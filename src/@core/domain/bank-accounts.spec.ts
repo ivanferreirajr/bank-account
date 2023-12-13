@@ -32,11 +32,21 @@ describe('BankAccount', () => {
     expect(bankAccount.balance).toBe(25);
   });
 
-  it('should make an credit in the account', () => {
+  it('should not able to debit in account', () => {
+    const bankAccount = accountSutFactory();
+
+    const executeDebit = () => {
+      bankAccount.debit(100);
+    };
+
+    expect(executeDebit).toThrow('Insufficient funds');
+  });
+
+  it('should credit the account', () => {
     const bankAccount = accountSutFactory();
 
     bankAccount.credit(50);
 
-    expect(bankAccount.balance).toBe(75);
+    expect(bankAccount.balance).toBe(100);
   });
 });
