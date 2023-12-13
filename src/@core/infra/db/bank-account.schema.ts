@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
+@Entity('BankAccount')
 export class BankAccountSchema {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -8,12 +8,12 @@ export class BankAccountSchema {
   @Column({ type: 'decimal', scale: 2 })
   balance: number;
 
-  @Column({ length: 255 })
+  @Column()
   agency: string;
 
-  @Column({ length: 255 })
+  @Column()
   account_number: string;
 
-  @Column({ length: 255 })
+  @Column()
   account_type: string;
 }
