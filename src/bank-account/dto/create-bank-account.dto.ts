@@ -10,7 +10,7 @@ export class CreateBankAccountDto {
   @IsString()
   @IsEnum(AccountType)
   @ApiProperty()
-  account_type: AccountType;
+  account_type: string;
 
   @IsNumber()
   @ApiProperty()
