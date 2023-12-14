@@ -15,9 +15,11 @@ import {
 } from '@nestjs/common';
 import { BankAccountService } from '../@core/domain/bank-account.service';
 import { BankAccountRestService } from './bank-account.service';
-import { CreateBankAccountDto } from './dto/create-bank-account.dto';
-import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
-import { TransactionBankAccountDto } from './dto/transaction-bank-account.dto';
+import {
+  CreateBankAccountDto,
+  UpdateBankAccountDto,
+  TransactionBankAccountDto,
+} from './dto';
 import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('bank-account')

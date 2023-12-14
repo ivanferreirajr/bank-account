@@ -1,10 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { Repository, DataSource } from 'typeorm';
 import { BankAccountSchema } from '../@core/infra/db/bank-account.schema';
 import { InjectRepository, getDataSourceToken } from '@nestjs/typeorm';
-import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
-import { TransactionBankAccountDto } from './dto/transaction-bank-account.dto';
+import {
+  CreateBankAccountDto,
+  UpdateBankAccountDto,
+  TransactionBankAccountDto,
+} from './dto';
 
 @Injectable({})
 export class BankAccountRestService {
