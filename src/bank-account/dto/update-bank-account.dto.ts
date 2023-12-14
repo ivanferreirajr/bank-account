@@ -11,8 +11,4 @@ export class UpdateBankAccountDto {
   @IsNumber()
   @ApiProperty()
   agency?: number;
-
-  @IsNumber()
-  @ApiProperty()
-  value?: number;
 }

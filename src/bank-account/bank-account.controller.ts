@@ -16,12 +16,12 @@ import {
 import { BankAccountService } from '../@core/domain/bank-account.service';
 import { BankAccountRestService } from './bank-account.service';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
-import { ApiOperation } from '@nestjs/swagger';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { TransactionBankAccountDto } from './dto/transaction-bank-account.dto';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('bank-account')
-export class BankAccountsController {
+export class BankAccountController {
   simulationsService: any;
   constructor(
     private readonly bankAccountRestService: BankAccountRestService,
@@ -29,7 +29,7 @@ export class BankAccountsController {
   ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a account', tags: ['account'] })
+  @ApiOperation({ summary: 'Criar conta', tags: ['Conta'] })
   create(@Body() createBankAccountDto: CreateBankAccountDto) {
     return this.bankAccountService.create(
       createBankAccountDto.agency,
@@ -39,19 +39,19 @@ export class BankAccountsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Create a account', tags: ['account'] })
+  @ApiOperation({ summary: 'Listar todas as contas', tags: ['Conta'] })
   findAll() {
     return this.bankAccountRestService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Create a account', tags: ['account'] })
+  @ApiOperation({ summary: 'Lista conta por id', tags: ['Conta'] })
   findOne(@Param('id') id: string) {
     return this.bankAccountRestService.findOne(id);
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Update a account', tags: ['account'] })
+  @ApiOperation({ summary: 'Atualizar dados da conta', tags: ['Conta'] })
   async update(
     @Param('id') id: string,
     @Body() updateBankAccountDto: UpdateBankAccountDto,
@@ -70,7 +70,7 @@ export class BankAccountsController {
 
   @HttpCode(204)
   @Patch('debit')
-  @ApiOperation({ summary: 'Update a account', tags: ['account'] })
+  @ApiOperation({ summary: 'Fazer saque de uma conta', tags: ['Conta'] })
   async debit(@Body() transactionBankAccountDto: TransactionBankAccountDto) {
     try {
       return this.bankAccountService.debit(
@@ -91,7 +91,7 @@ export class BankAccountsController {
 
   @HttpCode(204)
   @Patch('credit')
-  @ApiOperation({ summary: 'Update a account', tags: ['account'] })
+  @ApiOperation({ summary: 'Fazer depósito em uma conta', tags: ['Conta'] })
   async credit(@Body() transactionBankAccountDto: TransactionBankAccountDto) {
     try {
       return this.bankAccountService.credit(
@@ -106,7 +106,7 @@ export class BankAccountsController {
 
   @HttpCode(204)
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete a account', tags: ['account'] })
+  @ApiOperation({ summary: 'Deletar conta por id', tags: ['Conta'] })
   remove(@Param('id') id: string) {
     return this.bankAccountRestService.remove(id);
   }

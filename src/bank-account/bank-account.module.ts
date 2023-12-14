@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { BankAccountsController } from './bank-account.controller';
+import { BankAccountController } from './bank-account.controller';
 import { getDataSourceToken, TypeOrmModule } from '@nestjs/typeorm';
 import { BankAccountSchema } from '../@core/infra/db/bank-account.schema';
 import { BankAccountService } from '../@core/domain/bank-account.service';
@@ -10,7 +10,7 @@ import { BankAccountRepository } from '../@core/domain/interfaces/bank-account.r
 
 @Module({
   imports: [TypeOrmModule.forFeature([BankAccountSchema])],
-  controllers: [BankAccountsController],
+  controllers: [BankAccountController],
   providers: [
     BankAccountRestService,
     {

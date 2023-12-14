@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNumber, IsString } from 'class-validator';
-import { AccountType } from 'src/@core/domain/interfaces/account-type';
+import { AccountType } from '../../@core/domain/interfaces/account-type';
 
 export class CreateBankAccountDto {
   @IsNumber()
@@ -10,7 +10,7 @@ export class CreateBankAccountDto {
   @IsString()
   @IsEnum(AccountType)
   @ApiProperty()
-  account_type: string;
+  account_type: AccountType;
 
   @IsNumber()
   @ApiProperty()

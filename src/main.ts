@@ -3,9 +3,6 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
-//import * as dotenv from 'dotenv';
-//dotenv.config();
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -19,8 +16,10 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Bank Account - API')
-    .setDescription('dev-challenge-bank-account')
+    .setTitle('Conta Bancária API')
+    .setDescription(
+      'API RESTful para simular uma conta bancária com operações CRUD, saque e depósito ',
+    )
     .setVersion('1.0')
     .build();
 
