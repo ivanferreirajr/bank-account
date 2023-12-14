@@ -41,7 +41,7 @@ describe('BankAccount Repository', () => {
       account_type: AccountType.POUPANCA,
     });
     await repository.insert(bankAccount);
-    const model = await ormRepo.findOneBy({ account_number: '111111' });
+    const model = await ormRepo.findOneBy({ account_number: '12345' });
 
     expect(model.agency).toBe('5050');
     expect(model.account_number).toBe('12345');
