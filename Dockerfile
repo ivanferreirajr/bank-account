@@ -1,9 +1,13 @@
-FROM node:16.20.0
+FROM node:16.20.0-slim
 
-RUN apk add --no-cache bash
+WORKDIR /usr/src/app
 
-RUN npm install -g @nestjs/cli@10.2.1
+COPY . .
 
-USER node
+RUN npm install --quiet --no-optional --no-fund --loglevel=error
 
-WORKDIR /home/node/app
+RUN npm run build
+
+EXPOSE 3333
+
+CMD ["npm", "run", "start:prod"]
