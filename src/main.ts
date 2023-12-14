@@ -18,7 +18,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Conta Bancária API')
     .setDescription(
-      'API RESTful para simular uma conta bancária com operações CRUD, saque e depósito ',
+      'API RESTful para simular uma conta bancária com operações CRUD, saque e depósito',
     )
     .setVersion('1.0')
     .build();
