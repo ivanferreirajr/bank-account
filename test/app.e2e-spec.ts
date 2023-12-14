@@ -15,10 +15,7 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+  it('/bank-account (GET)', () => {
+    return request(app.getHttpServer()).get('/bank-account').expect(200);
   });
 });
